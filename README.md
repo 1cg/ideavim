@@ -1,173 +1,400 @@
+<img src="src/main/resources/META-INF/pluginIcon.svg" width="80" height="80" alt="icon" align="left"/>
+
 IdeaVim
-=======
+===
 
-IdeaVim is a Vim emulation plug-in for IDEs based on the IntelliJ platform.
-IdeaVim can be used with IntelliJ IDEA, RubyMine, PyCharm, PhpStorm, WebStorm
-and AppCode.
+[![Official JetBrains Project][jb-official-svg]][jb-official]
+[![Contributions welcome][contributions-welcome-svg]][contributions-welcome]
+[![Downloads][plugin-downloads-svg]][plugin-repo]
+[![Rating][plugin-rating-svg]][plugin-repo]
+[![Version][plugin-version-svg]][plugin-repo]
+[![Gitter][gitter-svg]][gitter]
+[![codecov](https://codecov.io/gh/JetBrains/ideavim/branch/master/graph/badge.svg)](https://codecov.io/gh/JetBrains/ideavim)
+[![Twitter][twitter-svg]][twitter]
 
-Resources:
+IdeaVim is a Vim engine for JetBrains IDEs.
 
-* [Plugin homepage](http://plugins.intellij.net/plugin/?id=164)
-* [Changelog](https://github.com/JetBrains/ideavim/blob/master/CHANGES.md)
-* [Bug tracker](http://youtrack.jetbrains.com/issues/VIM)
-* [Continuous integration builds](http://teamcity.jetbrains.com/project.html?projectId=project55)
+##### Contact maintainers:
+* [Bug tracker](https://youtrack.jetbrains.com/issues/VIM)
+* [@IdeaVim](https://twitter.com/ideavim) on Twitter
+* [Chat on gitter](https://gitter.im/JetBrains/ideavim)
+* [IdeaVim Channel](https://jb.gg/bi6zp7) on [JetBrains Server](https://discord.gg/jetbrains)
 
+##### Resources:
 
-Installation
+* [Plugin homepage](https://lp.jetbrains.com/ideavim/)
+* [Plugin on Marketplace](https://plugins.jetbrains.com/plugin/164-ideavim)
+* [Changelog](CHANGES.md)
+* [Continuous integration builds](https://ideavim.teamcity.com/)
+
+#### Compatibility
+
+IntelliJ IDEA, PyCharm, CLion, PhpStorm, WebStorm, RubyMine, AppCode, DataGrip, GoLand, Rider, Cursive,
+Android Studio and other IntelliJ platform based IDEs.
+
+Setup
 ------------
 
-Use the IDE's plugin manager to install the latest version of the plugin.
-Start the IDE normally and enable the Vim emulation using "Tools | VIM
-Emulator" menu item. At this point you must use Vim keystrokes in all editors.
+- IdeaVim can be installed via `Settings | Plugins`.
+See the [detailed instructions](https://www.jetbrains.com/help/idea/managing-plugins.html#).
 
-If you wish to disable the plugin, select the "Tools | VIM Emulator" menu so
-it is unchecked. At this point IDE will work with it's regular keyboard
-shortcuts.
+- Use `Tools | Vim` in the menu to enable or disable vim.
+
+- Use the `~/.ideavimrc` file as an analog of `~/.vimrc` ([learn more](#Files)). The XDG standard is supported, as well.
+
+- Shortcut conflicts can be resolved by using:
+     - On Linux & Windows: `File | Settings | Editor | Vim` & `File | Settings | Keymap`,
+     - On macOS: `Preferences | Editor | Vim` & `Preferences | Keymap`,
+     - Regular Vim mappings in the  `~/.ideavimrc` file.
+
+Get Early Access
+-------------------
+
+Would you like to try new features and fixes? Join the Early Access Program and
+receive EAP builds as updates!  
+
+1. Click the  IdeaVim icon <img src="src/main/resources/META-INF/pluginIcon_noBorders.svg" width="16" height="16" alt="icon"/>
+in the status bar  | `Early Access Program` | `Subscribe to EAP`
+
+
+Or subscribe to EAP updates manually:
+
+1. Open `Settings | Plugins`
+2. Click the gear icon :gear:, select `Manage Plugin Repositories`, and add the following url:
+```
+https://plugins.jetbrains.com/plugins/eap/ideavim
+```
+
+See [the changelog](CHANGES.md) for the list of unreleased features.
+
+It is important to distinguish EAP builds from traditional pre-release software.
+Please note that the quality of EAP versions may at times be way below even
+usual beta standards.
+
+You can always leave your feedback with:
+* [@IdeaVim](https://twitter.com/ideavim) in Twitter
+* [Bug tracker](https://youtrack.jetbrains.com/issues/VIM)
 
 
 Summary of Supported Vim Features
 ---------------------------------
 
-Supported:
+Here are some examples of supported vim features and commands:
 
-* Motion keys
-* Deletion/Changing
-* Insert mode commands
-* Marks
-* Registers
-* Undo/redo
-* Visual mode commands
-* Some Ex commands
-* Some [:set options](https://github.com/JetBrains/ideavim/blob/master/doc/set-commands.md)
-* Full Vim regexps for search and search/replace
-* Macros
-* Digraphs
-* Command line and search history
-* Vim web help
-
-Not supported (yet):
-
+* Normal / insert / visual / select / etc. modes
+* Motion / deletion / change / window / etc. commands
 * Key mappings
-* Various less used commands
-* Jump lists
-* Window commands
+* Marks / Macros / Digraphs / Registers
+* Some [set commands](https://github.com/JetBrains/ideavim/wiki/%22set%22-commands)
+* Full Vim regexps for search and search/replace
+* Vim web help
+* `~/.ideavimrc` configuration file
 
-Please see the file [index.txt](https://github.com/JetBrains/ideavim/blob/master/index.txt)
-for a list of commands covered with tests.
+[IdeaVim plugins](https://github.com/JetBrains/ideavim/wiki/IdeaVim-Plugins):
+
+* vim-easymotion
+* NERDTree
+* vim-surround
+* vim-multiple-cursors
+* vim-commentary
+* argtextobj.vim
+* vim-textobj-entire
+* ReplaceWithRegister
+* vim-exchange
+* vim-highlightedyank
+* vim-paragraph-motion
+* vim-indent-object
+* match.it  
+etc
+
+See also:
+
+* [The list of all supported commands](src/main/java/com/maddyhome/idea/vim/package-info.java)
+* [Top feature requests and bugs](https://youtrack.jetbrains.com/issues/VIM?q=%23Unresolved+sort+by%3A+votes)
+* [Vimscript support roadmap](vimscript-info/VIMSCRIPT_ROADMAP.md)
+* [List of supported in-build functions](vimscript-info/FUNCTIONS_INFO.MD)
+
+Files
+-----
+
+* `~/.ideavimrc`
+    * Your IdeaVim-specific Vim initialization commands
+    
+<details>
+<summary><strong>Example</strong> (click to see)</summary>
+
+```vim
+""" Map leader to space ---------------------
+let mapleader=" "
+
+""" Plugins  --------------------------------
+set surround
+set multiple-cursors
+set commentary
+set argtextobj
+set easymotion
+set textobj-entire
+set ReplaceWithRegister
+
+""" Plugin settings -------------------------
+let g:argtextobj_pairs="[:],(:),<:>"
+
+""" Common settings -------------------------
+set showmode
+set so=5
+set incsearch
+set nu
+
+""" Idea specific settings ------------------
+set ideajoin
+set ideastatusicon=gray
+set idearefactormode=keep
+
+""" Mappings --------------------------------
+map <leader>f <Plug>(easymotion-s)
+map <leader>e <Plug>(easymotion-f)
+
+map <leader>d <Action>(Debug)
+map <leader>r <Action>(RenameElement)
+map <leader>c <Action>(Stop)
+map <leader>z <Action>(ToggleDistractionFreeMode)
+
+map <leader>s <Action>(SelectInProjectView)
+map <leader>a <Action>(Annotate)
+map <leader>h <Action>(Vcs.ShowTabbedFileHistory)
+map <S-Space> <Action>(GotoNextError)
+
+map <leader>b <Action>(ToggleLineBreakpoint)
+map <leader>o <Action>(FileStructurePopup)
+```
+</details>
+
+<details>
+<summary><strong>Suggested options</strong> (click to see)</summary>
+
+Here is also a list of the suggested options from [defaults.vim](https://github.com/vim/vim/blob/master/runtime/defaults.vim)
+
+```vim
+" Show a few lines of context around the cursor. Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=5
+
+" Do incremental searching.
+set incsearch
+
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+```
+</details>
 
 
-Changes to the IDE
-------------------
+You can read your `~/.vimrc` file from `~/.ideavimrc` with this command:
 
-### Undo/Redo
+    source ~/.vimrc
 
-The IdeaVim plugin uses the undo/redo functionality of the IntelliJ platform,
-so the behaviour of the `u` and `<C-R>` commands may differ from the original
-Vim. Vim compatibility of undo/redo may be improved in the future releases.
+Also note that if you have overridden the `user.home` JVM option, this
+will affect where IdeaVim looks for your `.ideavimrc` file. For example, if you
+have `-Duser.home=/my/alternate/home` then IdeaVim will source
+`/my/alternate/home/.ideavimrc` instead of `~/.ideavimrc`.
 
-### Escape
-
-In the IDE, the `<Esc>` key is used during editing to cancel code completion
-windows, dialog windows, and parameter tooltips. While in the Vim insert mode,
-`<Esc>` is used to return back to the normal mode. If you are typing in the
-insert mode and a code completion window is popped up, pressing `<Esc>` cancel
-the window without exiting the insert mode.
-
-Using `<Esc>` in dialog windows remains problematic. For most dialog windows
-the Vim emulator is put into the insert mode without the possibility to switch to
-the normal mode. In some dialog windows the normal mode is on by default. The
-usage of the Vim emulator in dialog windows is an area for improvements.
-
-### Menu Changes
-
-In order to emulate the keystrokes used by Vim, several of the default hotkeys
-used by the IDE had to be changed. Below is a list of IDE menus, their default
-keyboard shortcuts, and their new VIM keystrokes.
-
-    File
-         Save All                 Ctrl-S              :w
-
-    Edit
-         Undo                     Ctrl-Z              u
-         Redo                     Ctrl-Shift-Z        Ctrl-R
-         Cut                      Ctrl-X              "+x
-         Copy                     Ctrl-C              "+y
-         Paste                    Ctrl-V              "+P
-         Select All               Ctrl-A              ggVG
-
-    Search
-         Find                     Ctrl-F              /
-         Replace                  Ctrl-R              :s
-         Find Next                F3                  n
-         Find Previous            Shift-F3            N
-
-    View
-         Quick JavaDoc            Ctrl-Q              K
-         Parameter Info           Ctrl-P              Ctrl-Shift-P
-         Swap Panels              Ctrl-U              <None>
-         Recent Files...          Ctrl-E              <None>
-         Type Hierarchy           Ctrl-H              Ctrl-Alt-Shift-H
-
-    Goto
-         Class...                 Ctrl-N              Alt-Shift-N
-         Line...                  Ctrl-G              G
-         Declaration              Ctrl-B              gd
-         Super Method             Ctrl-U              Ctrl-Shift-U
-
-    Code
-         Override Methods...      Ctrl-O              Ctrl-Shift-O
-         Implement Methods...     Ctrl-I              Ctrl-Shift-I
-         Complete Code                                (Only in Insert mode)
-              Basic               Ctrl-Space          Ctrl-Space or Ctrl-N or Ctrl-P
-              Smart Type          Ctrl-Shift-Space    Ctrl-Shift-Space
-              Class Name          Ctrl-Alt-Space      Ctrl-Alt-Space
-         Insert Live Template     Ctrl-J              Ctrl-]
-
-    Tools
-         Version Control
-              Check In Project    Ctrl-K              <None>
+Alternatively, you can set up initialization commands using [XDG](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) standard.
+Put your settings to `$XDG_CONFIG_HOME/ideavim/ideavimrc` file.
 
 
-Development
------------
+IdeaVim Plugins
+--------------------
 
-### Development Environment
+See [doc/IdeaVim Plugins.md](https://github.com/JetBrains/ideavim/wiki/IdeaVim-Plugins)
 
-1. Fork IdeaVim on GitHub and clone the repository on your local machine.
+Executing IDE Actions
+---------------------
 
-2. Open the project in IntelliJ IDEA 11+ (Community or Ultimate) using "File |
-   Open... | /path/to/ideavim".
+IdeaVim adds various commands for listing and executing arbitrary IDE actions as
+Ex commands or via `:map` command mappings:
 
-3. Set up a JDK if you haven't got it yet. Use "File | Project Structure | SDKs
-   | Add new JDK".
+### Executing actions:
+* `<Action>({action_id})`
+    * For the mappings you can use a special `<Action>` keyword. Don't forget the parentheses.
+    * E.g. `map gh <Action>(ShowErrorDescription)`  <- execute hover on `gh`.
+    * :warning: Mappings to `<Action>` don't work with `noremap`. 
+      If you know the case when it's needed, please [let us know](https://github.com/JetBrains/ideavim#contact-maintainers).
+* `:action {action_id}`
+    * Execute an action by `{action_id}`. Works from Ex command line.
+    * Please don't use `:action` in mappings. Use `<Action>` instead.
 
-4. Set up an IntelliJ plugin SDK using "File | Project Structure | SDKs | Add
-   new IntelliJ IDEA Plugin SDK". The correct path to your current installation
-   of IntelliJ will be suggested automatically. You will be prompted to select a
-   JDK for your plugin SDK. Select the JDK from the previous step. You
-   **should** name your plugin SDK `IntelliJ Plugin SDK` in order to match the
-   name in the project settings stored in the Git repository.
+### Finding action ids:
 
-5. Select a project SDK for your project using "File | Project Structure |
-   Project | Project SDK". Choose the plugin SDK you have created at the
-   previous step.
+* IJ provides `IdeaVim: track action Ids` command to show the id of the executed actions.
+  This command can be found in "Search everywhere" (double `shift`).
 
-6. Build IdeaVim and run IntelliJ with IdeaVim enabled using the "IdeaVim" run
-   configuration (use "Run | Run... | IdeaVim").
+    <details>
+        <summary><strong>"Track action Ids" Details</strong> (click to see)</summary>
+        <picture>
+            <source media="(prefers-color-scheme: dark)" srcset="assets/readme/track_action_dark.gif">
+            <img src="assets/readme/track_action_light.gif" alt="track action ids"/>
+        </picture>
+    </details>
 
-7. In order to be able to run tests in your IntelliJ edition uncomment the
-   appropriate lines in the constructor of the `VimTestCase` class.
 
+* `:actionlist [pattern]`
+    * Find IDE actions by id or keymap pattern (E.g. `:actionlist extract`, `:actionlist <C-D`)
+
+##### Examples:
+
+```vim
+" Map \r to the Reformat Code action
+:map \r <Action>(ReformatCode)
+
+" Map <leader>d to start debug
+:map <leader>d <Action>(Debug)
+
+" Map \b to toggle the breakpoint on the current line
+:map \b <Action>(ToggleLineBreakpoint)
+```
+
+##### Some popular actions:
+
+```
+ShowHoverInfo - Quick Documentation and Error Description
+QuickImplementations - Quick Definition
+```
+
+Vim Script
+------------
+
+IdeaVim can execute custom scripts that are written with Vim Script.
+At the moment we support all language features, but not all of the built-in functions and options are supported.
+
+Additionally, you may be interested in the
+[Vim Script Discussion](https://github.com/JetBrains/ideavim/discussions/357) or
+[Vim Script Roadmap](https://github.com/JetBrains/ideavim/blob/master/vimscript-info/VIMSCRIPT_ROADMAP.md).
+
+
+### IDE specific options
+
+You can evaluate the `has('ide')` function call and get `1` if it was called with IdeaVim or `0` if the function was called from Vim/NeoVim.  
+The option `&ide` contains the name and edition of your IDE, for example, "IntelliJ IDEA Ultimate Edition".  
+To see its value for the current IDE you are using, execute the `:echo &ide` command.  
+To write an IDE-specific configuration, use Vim's regexp match operators `=~?` (case-insensitive) / `=~#`  (case-sensitive)
+
+**Example config:**
+
+```vim
+" options and mappings that are supported by both Vim and IdeaVim
+set nu
+set relativenumber
+
+if has('ide')
+  " mappings and options that exist only in IdeaVim
+  map <leader>f <Action>(GotoFile)
+  map <leader>g <Action>(FindInPath)
+  map <leader>b <Action>(Switcher)
+
+  if &ide =~? 'intellij idea'
+    if &ide =~? 'community'
+      " some mappings and options for IntelliJ IDEA Community Edition
+    elseif &ide =~? 'ultimate'
+      " some mappings and options for IntelliJ IDEA Ultimate Edition
+    endif
+  elseif &ide =~? 'pycharm'
+    " PyCharm specific mappings and options
+  endif
+else
+  " some mappings for Vim/Neovim
+  nnoremap <leader>f <cmd>Telescope find_files<cr>
+endif
+```
+
+:gem: Contributing
+------------
+
+The power of contributing drives IdeaVim :muscle:. Even small contributions matter!
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) to start bringing your value to the project.
 
 Authors
 -------
 
-See [AUTHORS.md](https://github.com/JetBrains/ideavim/blob/master/AUTHORS.md)
+See [AUTHORS.md](AUTHORS.md)
 for a list of authors and contributors.
 
+IdeaVim tips and tricks
+-------
+
+- Use the power of IJ and Vim:
+    - `set ideajoin` to enable join via the IDE. See the [examples](https://jb.gg/f9zji9).
+    - Make sure `ideaput` is enabled for `clipboard` to enable native IJ insertion in Vim.
+    - Sync IJ bookmarks and Vim marks: `set ideamarks`
+    - Check out more [ex commands](https://github.com/JetBrains/ideavim/wiki/%22set%22-commands).
+
+- Use your vim settings with IdeaVim. Put `source ~/.vimrc` in `~/.ideavimrc`.
+- Control the status bar icon via the [`ideastatusicon` option](https://github.com/JetBrains/ideavim/wiki/%22set%22-commands).
+- Not familiar with the default behaviour during a refactoring? See the [`idearefactormode` option](https://github.com/JetBrains/ideavim/wiki/%22set%22-commands).
+
+Some facts about Vim
+-------
+
+Let’s relax and have some fun now! Here are a few things we've found interesting during development
+and would like to share with you.
+
+- There are no such commands as `dd`, `yy`, or `cc`. For example, `dd` is not a separate command for deleting the line,
+but a `d` command with a `d` motion.  
+Wait, but there isn't a `d` motion in Vim! That’s right, and that’s why Vim has a dedicated set of commands
+for which it checks whether the 
+[command equals to motion](https://github.com/vim/vim/blob/759d81549c1340185f0d92524c563bb37697ea88/src/normal.c#L6468)
+and if so, it executes `_` motion instead.  
+`_` is an interesting motion that isn't even documented in vi, and it refers to the current line.
+So, commands like `dd`, `yy`, and similar ones are simply translated to `d_`, `y_`, etc.
+[Here](https://github.com/vim/vim/blob/759d81549c1340185f0d92524c563bb37697ea88/src/normal.c#L6502)
+is the source of this knowledge.
+
+- `x`, `D`, and `&` are not separate commands either. They are synonyms of `dl`, `d$`, and `:s\r`, respectively.
+[Here](https://github.com/vim/vim/blob/759d81549c1340185f0d92524c563bb37697ea88/src/normal.c#L5365)
+is the full list of synonyms.
+
+- You can read a [post](https://github.com/JetBrains/ideavim/wiki/how-many-modes-does-vim-have) about how modes work in Vim and IdeaVim.
+
+- Have you ever used `U` after `dd`? [Don't even try](https://github.com/vim/vim/blob/759d81549c1340185f0d92524c563bb37697ea88/src/ops.c#L874).
+
+- A lot of variables that refer to visual mode start with two uppercase letters, e.g. `VIsual_active`. [Some examples](https://github.com/vim/vim/blob/master/src/normal.c#L17).
+  As mentioned [here](https://vi.stackexchange.com/a/42885/12441), this was done this way to avoid the clash with X11.
+
+- Other [strange things](https://github.com/vim/vim/blob/759d81549c1340185f0d92524c563bb37697ea88/src/ex_docmd.c#L1845) from vi:
+    * ":3"       jumps to line 3
+    * ":3|..."   prints line 3
+    * ":|"       prints current line
+
+- Vim script doesn't skip white space before comma. `F(a ,b)` => E475.
+
+- Fancy constants for [undolevels](https://vimhelp.org/options.txt.html#%27undolevels%27):
+  > The local value is set to -123456 when the global value is to be used.
 
 License
 -------
 
-IdeaVim is licensed under the terms of the GNU Public license version 2.
+IdeaVim is licensed under the MIT license.
 
+Third-party components and licenses are listed in [ThirdPartyLicenses.md](ThirdPartyLicenses.md).
+
+All releases before 2.0.0 were licensed under terms of GPL-2.0 or later.
+The last commit before switch to MIT is 05852b07c6090ad40fde7d3cafe0b074604f7ac5.
+You can read more about the license change here: https://github.com/JetBrains/ideavim/discussions/543
+
+
+<!-- Badges -->
+[jb-official]: https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub
+[jb-official-svg]: https://jb.gg/badges/official.svg
+
+[plugin-repo]: https://plugins.jetbrains.com/plugin/164-ideavim
+[plugin-downloads-svg]: http://img.shields.io/jetbrains/plugin/d/IdeaVIM
+[plugin-rating-svg]: http://img.shields.io/jetbrains/plugin/r/rating/IdeaVIM
+[plugin-version-svg]: https://img.shields.io/jetbrains/plugin/v/ideavim?label=version
+
+[gitter-svg]: https://badges.gitter.im/JetBrains/ideavim.svg
+[gitter]: https://gitter.im/JetBrains/ideavim?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+
+[twitter]: https://twitter.com/ideavim
+[twitter-svg]: https://img.shields.io/twitter/follow/ideavim?label=twitter%20%40ideavim
+
+[contributions-welcome-svg]: http://img.shields.io/badge/contributions-welcome-brightgreen
+[contributions-welcome]: https://github.com/JetBrains/ideavim/blob/master/CONTRIBUTING.md
